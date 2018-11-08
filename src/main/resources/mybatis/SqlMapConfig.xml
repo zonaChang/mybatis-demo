@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- 两个属性组合使用，才能使懒加载生效 -->
+		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="aggressiveLazyLoading" value="false" />
+		
+		<!-- 字段下划线转驼峰 -->
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		
+		<!-- 打印sql日志 -->
+		<setting name="logImpl" value="STDOUT_LOGGING" />
+	</settings>
+
+	<!-- 别名定义 -->
+	<typeAliases>
+		<!-- 批量别名定义 指定包名，mybatis自动扫描包中的po类，自动定义别名，别名就是类名（首字母大写或小写都可以） -->
+		<package name="com.thinkive.dzjf.title.change.controller.basic.bean" />
+	</typeAliases>
+
+	<!-- 加载 映射文件 -->
+	<mappers>
+		<!-- spring整合后，使用mapper扫描器，这里不需要配置了 -->
+	</mappers>
+
+</configuration>

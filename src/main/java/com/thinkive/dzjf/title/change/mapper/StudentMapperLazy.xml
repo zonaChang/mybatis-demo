@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkive.dzjf.title.change.mapper.StudentMapperLazy">
+  
+  <resultMap type="studentBean" id="queryStudentAndClassByStudentIdMap">
+    <id column="id" property="id"/>
+    <result column="name" property="name"/>
+    <association property="clazz" javaType="classBean" column="class_id" select="queryClassById">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+    </association>
+  </resultMap>
+  
+  <select id="queryStudentAndClassByStudentId" resultMap="queryStudentAndClassByStudentIdMap">
+    SELECT T.ID, T.NAME, T.CLASS_ID FROM T_STUDENT T WHERE T.ID=#{id}
+  </select>
+  
+  <select id="queryClassById" resultType="classBean">
+    SELECT T.ID, T.NAME FROM T_CLASS T WHERE T.ID=#{id}
+  </select>
+</mapper>

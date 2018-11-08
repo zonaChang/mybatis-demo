@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkive.dzjf.title.change.mapper.StudentMapperParams">
+  
+  <select id="queryStudentById" resultType="studentBean">
+<!--     SELECT T.ID, T.NAME FROM T_STUDENT T WHERE T.ID=#{id} -->
+<!--     SELECT T.ID, T.NAME FROM T_STUDENT T WHERE T.ID=#{anyStr} -->
+    SELECT T.ID, T.NAME FROM T_STUDENT T WHERE T.ID=#{0}
+  </select>
+  
+  <select id="queryStudentLikeName" resultType="studentBean">
+    <!-- $操作符会将内容原封不动的拼接到sql后面， 所以查询字符串时，需要添加引号， 且这里面只能用value -->
+    SELECT T.ID, T.NAME FROM T_STUDENT T WHERE T.NAME LIKE '%${value}%'
+  </select>
+  
+  <select id="queryStudentLikeNameSecurity" resultType="studentBean">
+    <!-- 使用函数完成模糊查询，同时规避sql注入 -->
+    SELECT T.ID, T.NAME FROM T_STUDENT T WHERE  INSTR(T.NAME, #{name}) > 0
+  </select>
+  
+  <select id="queryStudentByObj" resultType="studentBean">
+    <!-- 直接使用bean的属性即可， 如果是多级对象嵌套，就用bean1.bean2.xxx -->
+    SELECT T.ID, T.NAME FROM T_STUDENT T WHERE T.ID=#{id} AND T.NAME=#{name}
+  </select>
+  
+  <select id="queryStudentByMoreParams1" resultType="studentBean">
+    <!-- 可用标识：0， 1， param1，param2 等，以此类推 -->
+    SELECT T.ID, T.NAME FROM T_STUDENT T WHERE T.NAME=#{param2} AND T.ID=#{param1}  
+  </select>
+  
+  <select id="queryStudentByMoreParamsAlias" resultType="studentBean">
+    <!-- 可用标识： 通过在mapper接口参数添加@Param指定参数别名 -->
+    SELECT T.ID, T.NAME FROM T_STUDENT T WHERE T.NAME=#{namex} AND T.ID=#{idx}  
+  </select>
+</mapper>

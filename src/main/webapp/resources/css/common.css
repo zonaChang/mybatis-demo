@@ -1,0 +1,33 @@
+li {
+	list-style: none;
+	list-style-type: none;
+}
+body, div, ul, li, p {
+	margin: 0;
+	padding: 0;
+}
+.info_list{
+	margin: 5px 2px;
+} 
+.info_container {
+	margin-left:50px;
+	margin-top:20px;
+	border:1px solid #ccc;
+	width:200px;
+}
+.warn {
+    color:red;
+    font-size:16px;
+    font-weight: bold;
+}
+
+.tip{
+	margin-top:20px;
+	margin-left:50px;
+}
+.title{
+	font-weight: bold;
+}
+tr, td, table, th{
+	border: 1px solid #ccc;
+}

@@ -1,0 +1,23 @@
+/target/
+*.class
+*.iml
+.idea/*
+/**/target/
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+# Package Files #
+*.jar
+*.war
+*.ear
+*.txt
+.settings
+.project
+.classpath
+.scannerwork
+sonar-project.properties
+note
+### OSX ###
+.DS_Store
+resin3.conf
+resin3.0.launch
+*.xlsx

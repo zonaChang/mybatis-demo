@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkive.dzjf.title.change.mapper.StudentMapper">
+  
+  <!-- 查询学生，班级信息 -->  
+  <resultMap type="studentBean" id="queryStudentAndClazzByIdMap">
+    <id column="id" property="id"/>
+    <result column="name" property="name"/>
+    <association property="clazz" javaType="classBean">
+        <id column="class_id" property="id"/>
+        <result column="class_name" property="name"/>
+    </association>
+  </resultMap>
+  
+  <!-- 查询学生，老师， 班级信息 -->
+  <resultMap type="studentBean" id="queryStudentAndTeacherAndClassByIdMap">
+    <id column="id" property="id"/>
+    <result column="name" property="name"/>
+    <!-- 一对一 使用JavaType 指定属性的类型 -->
+    <association property="clazz" javaType="classBean">
+        <id column="class_id" property="id"/>
+        <result column="class_name" property="name"/>
+    </association>
+    
+    <!-- 一对多使用ofType， 指定集合泛型的类型 -->
+    <collection property="teachers" ofType="teacherBean">
+        <id column="teacher_id" property="id"/>
+        <result column="teacher_name" property="name"/>
+    </collection>
+  </resultMap>
+  
+  <select id="queryStudentById" resultType="studentBean">
+    SELECT T.ID, T.NAME FROM T_STUDENT T WHERE T.ID=#{id}
+  </select>
+  
+  <select id="queryStudentAndClazzById" resultMap="queryStudentAndClazzByIdMap">
+	   SELECT T.ID, T.NAME, T.CLASS_ID, T2.NAME CLASS_NAME FROM T_STUDENT T, T_CLASS T2 
+	   WHERE T.CLASS_ID = T2.ID  AND t.ID=#{0}
+  </select>
+  
+  <select id="queryStudentAndTeacherAndClassById" resultMap="queryStudentAndTeacherAndClassByIdMap">
+	   SELECT T1.ID, T1.NAME, T2.ID CLASS_ID, T2.NAME CLASS_NAME, T4.ID TEACHER_ID, T4.NAME TEACHER_NAME 
+	   FROM 
+	   T_STUDENT T1, T_CLASS T2, T_CLASS_TEACHER T3, T_TEACHER T4 
+	   WHERE T4.ID=T3.TEACHER_ID AND T3.CLASS_ID=T2.ID AND T1.CLASS_ID=T2.ID AND T1.ID=#{id}
+  </select>
+  
+  <select id="queryAllStudent" resultType="studentBean">
+    SELECT T.ID, T.NAME FROM T_STUDENT T
+  </select>
+</mapper>

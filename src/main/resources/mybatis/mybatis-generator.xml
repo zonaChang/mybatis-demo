@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+        <!-- 驱动的绝对路径 -->
+    <classPathEntry
+        location="E:\\java\\tools\\maven_repo\\mysql\\mysql-connector-java\\5.1.44\\mysql-connector-java-5.1.44.jar" />
+    <context id="context1">
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" /><!-- 是否取消注释 -->
+            <property name="suppressDate" value="false" /> <!-- 是否生成注释代时间戳 -->
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+            connectionURL="jdbc:mysql://localhost:3306/trade?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false" userId="root" password="root" />
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true"/>
+        </javaTypeResolver>
+        
+        <!-- targetPackage是目标包名,  targetProject是包所在的位置-->
+        <!-- javaModelGenerator生成的是实体类,  sqlMapGenerator生成的是映射文件,  javaClientGenerator生成的是dao -->
+        <javaModelGenerator targetPackage="com.carl.trade.rocketmq.entity" targetProject="src\\main\\java" >
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimString" value="true"/>
+        </javaModelGenerator>
+        <sqlMapGenerator targetPackage="com.carl.trade.rocketmq.mapper" targetProject="src\\main\\java" >
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+        <javaClientGenerator targetPackage="com.carl.trade.rocketmq.mapper" targetProject="src\\main\\java" type="XMLMAPPER" >
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+            
+        <!-- domainObjectName是表对应的实体类名,  tableName是对应的表名-->
+        <!-- table可以配置多个,enable*几个参数是为了自动生成一些额外的sql操作,可以关闭-->
+        <table tableName="trade_coupon"
+            enableCountByExample="true" enableUpdateByExample="true"
+            enableDeleteByExample="true" enableSelectByExample="true"
+            selectByExampleQueryId="true">
+            <generatedKey column="coupon_id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="trade_goods"
+            enableCountByExample="true" enableUpdateByExample="true"
+            enableDeleteByExample="true" enableSelectByExample="true"
+            selectByExampleQueryId="true">
+            <generatedKey column="goods_id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="trade_order"
+            enableCountByExample="true" enableUpdateByExample="true"
+            enableDeleteByExample="true" enableSelectByExample="true"
+            selectByExampleQueryId="true">
+            <generatedKey column="order_id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="trade_pay"
+            enableCountByExample="true" enableUpdateByExample="true"
+            enableDeleteByExample="true" enableSelectByExample="true"
+            selectByExampleQueryId="true">
+            <generatedKey column="pay_id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="trade_pay"
+            enableCountByExample="true" enableUpdateByExample="true"
+            enableDeleteByExample="true" enableSelectByExample="true"
+            selectByExampleQueryId="true">
+            <generatedKey column="pay_id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="trade_user"
+            enableCountByExample="true" enableUpdateByExample="true"
+            enableDeleteByExample="true" enableSelectByExample="true"
+            selectByExampleQueryId="true">
+            <generatedKey column="user_id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="trade_goods_number_log"
+            enableCountByExample="true" enableUpdateByExample="true"
+            enableDeleteByExample="true" enableSelectByExample="true"
+            selectByExampleQueryId="true">
+        </table>
+
+    </context>
+</generatorConfiguration>
